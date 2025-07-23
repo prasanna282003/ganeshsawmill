@@ -315,16 +315,24 @@
         }
         
         .member-image {
-            height: 300px;
-            overflow: hidden;
-        }
-        
-        .member-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            height: 250px; /* control image height */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2b1a17; /* dark background to match theme */
         }
+
+        .member-image img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+
         
         .team-member:hover .member-image img {
             transform: scale(1.05);
@@ -669,7 +677,7 @@
             <div class="team-members">
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="images/founder.jpg" alt="Rajesh Kumar">
+                        <img src="images/founder.jpg"  >
                     </div>
                     <div class="member-info">
                         <h3>M R Patel</h3>
@@ -679,7 +687,7 @@
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="images/cofounder.jpg" alt="Priya Sharma">
+                        <img src="images/cofounder.jpg" >
                     </div>
                     <div class="member-info">
                         <h3>V M Patel</h3>
@@ -687,26 +695,7 @@
                     </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vikram Patel">
-                    </div>
-                    <div class="member-info">
-                        <h3>Vikram Patel</h3>
-                        <p>Head of Quality Control</p>
-                        
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Ananya Gupta">
-                    </div>
-                    <div class="member-info">
-                        <h3>Ananya Gupta</h3>
-                        <p>Customer Relations</p>
-
-                    </div>
+               
                 </div>
             </div>
         </div>
