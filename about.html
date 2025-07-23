@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Sri Ganesh Sawmill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== MODERN SAWMILL THEME ===== */
+        :root {
+            --black: #1A1A1A;
+            --wood-dark: #3E2723;
+            --wood-light: #8D6E63;
+            --gold: #D4AF37;
+            --cream: #F5F5F1;
+            --text-dark: #333;
+            --text-light: #EEE;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family:'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            background-color: var(--black);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        nav ul li a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        nav ul li a.active {
+            color: var(--gold);
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            color: var(--cream);
+            cursor: pointer;
+        }
+        
+        /* ===== ABOUT HERO SECTION ===== */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1546962339-5ff89552b8ed?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTV8fHdvb2QlMjBiYWNrZ3JvdW5kfGVufDB8MHwwfHx8MA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .about-hero-content {
+            width: 100%;
+            color: var(--cream);
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+            color: var(--gold);
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 0.8;
+        }
+        
+        .breadcrumb span {
+            color: var(--cream);
+        }
+        
+        /* ===== OUR STORY SECTION ===== */
+        .our-story {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--wood-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .story-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .story-text {
+            flex: 1;
+        }
+        
+        .story-text h3 {
+            font-size: 1.8rem;
+            color: var(--wood-dark);
+            margin-bottom: 20px;
+        }
+        
+        .story-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .story-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .milestones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .milestone {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .milestone:hover {
+            transform: translateY(-10px);
+        }
+        
+        .milestone-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .milestone h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--wood-dark);
+        }
+        
+        /* ===== OUR TEAM SECTION ===== */
+        .our-team {
+            padding: 100px 0;
+            background: var(--wood-dark);
+            color: var(--cream);
+        }
+        
+        .our-team .section-title h2 {
+            color: var(--cream);
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-member {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+        
+        .member-info {
+            padding: 25px;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-info p {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .member-social a {
+            color: var(--cream);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .member-social a:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* ===== OUR VALUES SECTION ===== */
+        .our-values {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--gold);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--wood-dark);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: var(--cream);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-about p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            color: var(--gold);
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--cream);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 992px) {
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .story-content {
+                flex-direction: column;
+            }
+            
+            .story-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--black);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s;
+                z-index: 999;
+                padding: 30px;
+            }
+
+            
+            nav ul li a.active {
+                color: var(--gold) !important;
+                font-weight: 600;
+            }
+            
+    
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-links {
+                text-align: center;
+            }
+            
+            .footer-contact p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Sri Ganesh Sawmill</div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ABOUT HERO SECTION -->
+    <section class="about-hero">
+        <div class="container about-hero-content">
+            <h1>Our Story & Heritage</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><span>About Us</span></li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- OUR STORY SECTION -->
+    <section class="our-story">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Humble Beginnings</h2>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text">
+                    <h3>Our Story</h3>
+                    <p>Founded in 1978 by Mr. Rajesh Kumar, Sri Ganesh Sawmill began as a small family-operated workshop with just two employees. What started as a modest operation processing local timber has grown into one of the region's most respected wood suppliers.</p>
+                    <p>Our founder's vision was simple: provide quality wood products while maintaining ethical business practices and sustainable sourcing. This philosophy remains at the core of everything we do today, three decades later.</p>
+                    <p>In 2005, we expanded our operations with modern machinery while preserving traditional wood seasoning techniques. This combination of innovation and tradition sets us apart in the industry.</p>
+                </div>
+                <div class="story-image">
+                    <img src="images/about img.jpg" alt="Our Sawmill in early days">
+                </div>
+            </div>
+            
+            <div class="milestones">
+                <div class="milestone">
+                    <div class="milestone-number">1978</div>
+                    <h4>Founded</h4>
+                    <p>Started as small family workshop</p>
+                </div>
+                
+                <div class="milestone">
+                    <div class="milestone-number">2000</div>
+                    <h4>Expansion</h4>
+                    <p>Added modern processing facilities</p>
+                </div>
+                
+                <div class="milestone">
+                    <div class="milestone-number">2012</div>
+                    <h4>Certified</h4>
+                    <p>Received sustainable forestry certification</p>
+                </div>
+                
+                <div class="milestone">
+                    <div class="milestone-number">2025</div>
+                    <h4>Today</h4>
+                    <p>Serving 500+ clients annually</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- OUR TEAM SECTION -->
+    <section class="our-team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Family</h2>
+            </div>
+            
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/founder.jpg" alt="Rajesh Kumar">
+                    </div>
+                    <div class="member-info">
+                        <h3>M R Patel</h3>
+                        <p>Founder</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/cofounder.jpg" alt="Priya Sharma">
+                    </div>
+                    <div class="member-info">
+                        <h3>V M Patel</h3>
+                        <p>Director </p>     
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vikram Patel">
+                    </div>
+                    <div class="member-info">
+                        <h3>Vikram Patel</h3>
+                        <p>Head of Quality Control</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Ananya Gupta">
+                    </div>
+                    <div class="member-info">
+                        <h3>Ananya Gupta</h3>
+                        <p>Customer Relations</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- OUR VALUES SECTION -->
+    <section class="our-values">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We practice responsible forestry and replant three trees for every one we harvest, ensuring our business benefits future generations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>From selection to seasoning, we maintain rigorous quality standards at every stage of our process.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We believe in transparent pricing, honest advice, and doing what's right - even when no one is watching.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>We support local craftsmen, provide fair wages, and invest in our employees' growth and development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3>Sri Ganesh Sawmill</h3>
+                    <p>Your trusted partner for premium quality <br> timber and wood solutions since 1995.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/919945431338"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                 <div class="footer-column footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>State Highway 65, durgi nagar, Bhadravathi, Karnataka 577301</p>
+                    <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-phone"></i> +91 9448211409 | +91 9945431338</p>
+                    <p><i class="fas fa-envelope"></i>vvinodgsm@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 8AM - 6PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                 <p>copyright &copy; 2025. All Rights Reserved by  Sri Ganesh saw mill <br> Designed and Developed by <a href="https://www.korzyn.com/" style="color: white;">Korzyn Consulting</a></p>
+            </div>
+        </div>
+    </footer>
+    
+     <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navbar = document.getElementById('navbar');
+    
+    menuBtn.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        menuBtn.innerHTML = navbar.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Sticky Header on Scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('sticky', window.scrollY > 0);
+    });
+    
+    // Highlight current page in navigation - UPDATED VERSION
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    navLinks.forEach(link => {
+        // Get just the filename part of the href (in case it includes paths)
+        const linkPage = link.getAttribute('href').split('/').pop();
+        
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

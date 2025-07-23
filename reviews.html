@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Sri Ganesh Sawmill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== MODERN SAWMILL THEME ===== */
+        :root {
+            --black: #1A1A1A;
+            --wood-dark: #3E2723;
+            --wood-light: #8D6E63;
+            --gold: #D4AF37;
+            --cream: #F5F5F1;
+            --text-dark: #333;
+            --text-light: #EEE;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family:'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            background-color: var(--black);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        nav ul li a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        nav ul li a.active {
+            color: var(--gold);
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            color: var(--cream);
+            cursor: pointer;
+        }
+        
+        /* ===== REVIEWS HERO SECTION ===== */
+        .reviews-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1430490082716-7e34f7947c6c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM2fHx3b29kJTIwYmFja2dyb3VuZHxlbnwwfDB8MHx8fDA%3D');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .reviews-hero-content {
+            width: 100%;
+            color: var(--cream);
+        }
+        
+        .reviews-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+            color: var(--gold);
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 0.8;
+        }
+        
+        .breadcrumb span {
+            color: var(--cream);
+        }
+        
+        /* ===== REVIEWS SECTION ===== */
+        .customer-reviews {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--wood-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border-top: 4px solid var(--gold);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--wood-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .reviewer-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--wood-dark);
+        }
+        
+        .review-meta {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--wood-light);
+        }
+        
+        .review-stars {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        
+        .review-date {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .review-content {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .review-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--wood-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* ===== RATING SUMMARY SECTION ===== */
+        .rating-summary {
+            padding: 80px 0;
+            background: var(--wood-dark);
+            color: var(--cream);
+            text-align: center;
+        }
+        
+        .rating-summary .section-title h2 {
+            color: var(--cream);
+        }
+        
+        .rating-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .average-rating {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+        
+        .total-reviews {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .stars-distribution {
+            text-align: left;
+            max-width: 400px;
+        }
+        
+        .star-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .star-label {
+            width: 100px;
+            font-weight: 500;
+        }
+        
+        .star-bar {
+            flex-grow: 1;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+        
+        .star-fill {
+            height: 100%;
+            background: var(--gold);
+        }
+        
+        .star-count {
+            width: 40px;
+            text-align: right;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: var(--cream);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-about p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            color: var(--gold);
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--cream);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 992px) {
+            .reviews-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .rating-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--black);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s;
+                z-index: 999;
+                padding: 30px;
+            }
+             nav ul li a.active {
+                color: var(--gold) !important;
+                font-weight: 600;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .reviews-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-links {
+                text-align: center;
+            }
+            
+            .footer-contact p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Sri Ganesh Sawmill</div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reviews.html" class="active">Reviews</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- REVIEWS HERO SECTION -->
+    <section class="reviews-hero">
+        <div class="container reviews-hero-content">
+            <h1>What Our Customers Say</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><span>Reviews</span></li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- RATING SUMMARY SECTION -->
+    <section class="rating-summary">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Satisfaction</h2>
+            </div>
+            
+            <div class="rating-stats">
+                <div>
+                    <div class="average-rating">4.8</div>
+                    <div class="total-reviews">from 32+ reviews</div>
+                    <div class="stars">
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                    </div>
+                </div>
+                
+                <div class="stars-distribution">
+                    <div class="star-row">
+                        <div class="star-label">5 stars</div>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 85%;"></div>
+                        </div>
+                        <div class="star-count">27</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">4 stars</div>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 10%;"></div>
+                        </div>
+                        <div class="star-count">3</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">3 stars</div>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 3%;"></div>
+                        </div>
+                        <div class="star-count">1</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">2 stars</div>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="star-count">0</div>
+                    </div>
+                    <div class="star-row">
+                        <div class="star-label">1 star</div>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 1%;"></div>
+                        </div>
+                        <div class="star-count">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CUSTOMER REVIEWS SECTION -->
+    <section class="customer-reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Testimonials</h2>
+            </div>
+            
+            <div class="reviews-container">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-badge">Local Guide</div>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">HP</div>
+                        <div class="reviewer-info">
+                            <h4>Haresh Patel Ravani</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">3 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>All kinds of teak wood available at competitive prices</p>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-badge">Local Guide</div>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">SS</div>
+                        <div class="reviewer-info">
+                            <h4>Sharath Sharath</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">4 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Chethan is owner. . Very down to earth. . Really good and genuine wood</p>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">DD</div>
+                        <div class="reviewer-info">
+                            <h4>Dipam Divani</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">9 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>I just love this saw mill because this saw mill gives best service to customers</p>
+                    </div>
+                </div>
+                
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="review-badge">Local Guide</div>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">SV</div>
+                        <div class="reviewer-info">
+                            <h4>Shamanth V M</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">6 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Best for good choice wood here</p>
+                    </div>
+                </div>
+                
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">RL</div>
+                        <div class="reviewer-info">
+                            <h4>Rukhman L.M</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">1 year ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Nice. Soft coaparate with custamers</p>
+                    </div>
+                </div>
+                
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">CP</div>
+                        <div class="reviewer-info">
+                            <h4>Chetan Patel</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">9 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Good quality wood are there</p>
+                    </div>
+                </div>
+                
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">YN</div>
+                        <div class="reviewer-info">
+                            <h4>Yathish Ns</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">2 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Good place for wood products</p>
+                    </div>
+                </div>
+                
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">VP</div>
+                        <div class="reviewer-info">
+                            <h4>Vinod Patel</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">9 months ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Quality nice</p>
+                    </div>
+                </div>
+                
+                <!-- Review 9 -->
+                <div class="review-card">
+                    <div class="review-badge">Local Guide</div>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">TJ</div>
+                        <div class="reviewer-info">
+                            <h4>Tarun Jabwani</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">2 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Good Quality and Services....</p>
+                    </div>
+                </div>
+                
+                <!-- Review 10 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">AP</div>
+                        <div class="reviewer-info">
+                            <h4>Akshay Patel</h4>
+                            <div class="review-meta">
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-date">7 years ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Good quality ....</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <h3>Sri Ganesh Sawmill</h3>
+                    <p>Your trusted partner for premium quality <br> timber and wood solutions since 1995.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/919945431338"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                 <div class="footer-column footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>State Highway 65, durgi nagar, Bhadravathi, Karnataka 577301</p>
+                    <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-phone"></i> +91 9448211409 | +91 9945431338</p>
+                    <p><i class="fas fa-envelope"></i> vvinodgsm@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8AM - 6PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                 <p>copyright &copy; 2025. All Rights Reserved by  Sri Ganesh saw mill <br> Designed and Developed by <a href="https://www.korzyn.com/" style="color: white;">Korzyn Consulting</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navbar = document.getElementById('navbar');
+        
+        menuBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuBtn.innerHTML = navbar.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Sticky Header on Scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+          // Highlight current page in navigation - UPDATED VERSION
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    navLinks.forEach(link => {
+        // Get just the filename part of the href (in case it includes paths)
+        const linkPage = link.getAttribute('href').split('/').pop();
+        
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+        
+         
+    </script>
+</body>
+</html>
