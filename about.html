@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Sri Ganesh Sawmill",
-  "image": "https://yourdomain.com/images/logo.png",
+  "image": "https://yourdomain.com/images/about-img",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "State Highway 65, Durgi Nagar",
@@ -823,37 +823,91 @@
         </div>
     </footer>
     
-     <script>
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const navbar = document.getElementById('navbar');
-    
-    menuBtn.addEventListener('click', () => {
-        navbar.classList.toggle('active');
-        menuBtn.innerHTML = navbar.classList.contains('active') ? 
-            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    
-    // Sticky Header on Scroll
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('sticky', window.scrollY > 0);
-    });
-    
-    // Highlight current page in navigation - UPDATED VERSION
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('nav ul li a');
-    
-    navLinks.forEach(link => {
-        // Get just the filename part of the href (in case it includes paths)
-        const linkPage = link.getAttribute('href').split('/').pop();
+    <script>
+    // Self-executing function to avoid global scope pollution
+    (function() {
+        // DOM elements
+        const menuBtn = document.getElementById('menuBtn');
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const header = document.querySelector('header');
         
-        if (linkPage === currentPage) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+        // Flag to track mobile menu state
+        let menuOpen = false;
+        
+        // ===== SINGLE EVENT HANDLERS =====
+        
+        // Mobile menu toggle (with proper event delegation)
+        function handleMenuToggle() {
+            menuOpen = !menuOpen;
+            navbar.classList.toggle('active', menuOpen);
+            menuBtn.innerHTML = menuOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         }
-    });
+        
+        // Close mobile menu when clicking a link
+        function handleNavLinkClick() {
+            if (menuOpen) {
+                menuOpen = false;
+                navbar.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+        
+        // Sticky header handler
+        function handleScroll() {
+            header.classList.toggle('sticky', window.scrollY > 0);
+        }
+        
+        // ===== EVENT LISTENER SETUP =====
+        
+        // Set up all event listeners once
+        function initialize() {
+            // Mobile menu button
+            menuBtn.addEventListener('click', handleMenuToggle, {once: false});
+            
+            // Navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', handleNavLinkClick);
+            });
+            
+            // Scroll handler (with debounce)
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(handleScroll, 50);
+            });
+            
+            // Set active nav link
+            highlightCurrentPage();
+        }
+        
+        // ===== CURRENT PAGE HIGHLIGHTING =====
+        
+        function highlightCurrentPage() {
+            let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            currentPage = currentPage.split('?')[0].split('#')[0];
+            
+            navLinks.forEach(link => {
+                let linkPage = link.getAttribute('href').split('/').pop();
+                linkPage = linkPage.split('?')[0].split('#')[0];
+                
+                link.classList.remove('active');
+                
+                if (linkPage === currentPage || 
+                   (currentPage === 'index.html' && (linkPage === '' || linkPage === '/'))) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Initialize everything when DOM is ready
+        if (document.readyState !== 'loading') {
+            initialize();
+        } else {
+            document.addEventListener('DOMContentLoaded', initialize);
+        }
+        
+    })();
 </script>
 </body>
 </html>
